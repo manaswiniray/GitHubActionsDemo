@@ -1,0 +1,28 @@
+name: workflowDemo3
+on: push
+jobs:
+  DEV:
+    runs-on: ubuntu-latest
+    environment: DEV
+    
+    steps:
+      - name: run a script
+        run: echo "I'm running the DEV environment!"
+
+  PROD:
+    runs-on: ubuntu-latest
+    environment: PROD
+    needs: DEV
+    
+    steps:
+      - name: run a script
+        run: echo "I'm running the PROD environment!"
+
+  QA:
+    runs-on: ubuntu-latest
+    environment: QA
+    needs: PROD
+    
+    steps:
+      - name: run a script
+        run: echo "I'm running the QA environment!"
